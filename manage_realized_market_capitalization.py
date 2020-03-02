@@ -86,7 +86,7 @@ def update_realized_market_capitalization(symbol: str, init_price):
                         from_amount = from_account['data'][0][1]
                     except Exception:
                         print(transaction)
-                        raise Exception
+                        break
 
 
                     if remaining_value < from_amount:
@@ -187,3 +187,43 @@ def _save_state(symbol_dir, date_to_process, state):
         for key, value in state.items():
             if len(value['data']) > 0:
                 file.write(key + ';' + str(value['balance']) + ';' + json.dumps(value['data']) + '\n')
+
+
+def get_first_data_timestamp(symbol):
+
+    symbol_dir = BASE_DIRECTORY + symbol
+
+    last_file_timestamp = None
+
+    files = [f for f in os.listdir(symbol_dir) if os.path.isfile(os.path.join(symbol_dir, f))]
+
+    # get the file with the highest timestamp
+    for file in files:
+        filename = file.split('.')[0]
+
+        timestamp = datetime.strptime(filename, '%Y-%m-%d')
+
+        if not last_file_timestamp or timestamp < last_file_timestamp:
+            last_file_timestamp = timestamp
+
+    return last_file_timestamp
+
+
+def get_last_data_timestamp(symbol):
+
+    symbol_dir = BASE_DIRECTORY + symbol
+
+    last_file_timestamp = None
+
+    files = [f for f in os.listdir(symbol_dir) if os.path.isfile(os.path.join(symbol_dir, f))]
+
+    # get the file with the highest timestamp
+    for file in files:
+        filename = file.split('.')[0]
+
+        timestamp = datetime.strptime(filename, '%Y-%m-%d')
+
+        if not last_file_timestamp or timestamp > last_file_timestamp:
+            last_file_timestamp = timestamp
+
+    return last_file_timestamp

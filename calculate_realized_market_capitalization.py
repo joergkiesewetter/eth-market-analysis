@@ -2,19 +2,19 @@ import json
 import os
 from datetime import date, datetime, timedelta
 
-from manage_realized_market_capitalization import BASE_DIRECTORY
+from manage_exchange_rates import get_first_market_price_date
+from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
 
 
-def calculate_realized_market_capitalization(symbol: str):
-
-    symbol_dir = BASE_DIRECTORY + symbol
+def calculate_realized_market_capitalization(symbol: str, from_date: datetime):
 
     max_time = datetime.now()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     stop_processing = False
 
-    date_to_process = _get_first_data_timestamp(symbol_dir)
+    date_to_process = get_first_data_timestamp(symbol)
+    date_to_process = max(date_to_process, from_date)
 
     print('--------')
     print(symbol)
@@ -63,7 +63,7 @@ def _analyse_data(symbol, data, date_to_process) :
         'coins_older_1y': 0,
     }
 
-    market_entry_date = _get_first_market_price_date(symbol)
+    market_entry_date = get_first_market_price_date(symbol)
 
     date_1y = _add_years(date_to_process, -1)
 
@@ -105,33 +105,3 @@ def _add_years(d, years):
         return d.replace(year = d.year + years)
     except ValueError:
         return d + (date(d.year + years, 1, 1) - date(d.year, 1, 1))
-
-
-def _get_first_market_price_date(symbol):
-
-    with open('data/exchange_rates/' + symbol + '.csv') as file:
-
-        for line in file:
-
-            line_parts = line.split(',')
-
-            if line_parts[1].strip() != 'None':
-                return datetime.strptime(line_parts[0], '%Y-%m-%d')
-
-
-def _get_first_data_timestamp(symbol_dir):
-
-    last_file_timestamp = None
-
-    files = [f for f in os.listdir(symbol_dir) if os.path.isfile(os.path.join(symbol_dir, f))]
-
-    # get the file with the highest timestamp
-    for file in files:
-        filename = file.split('.')[0]
-
-        timestamp = datetime.strptime(filename, '%Y-%m-%d')
-
-        if not last_file_timestamp or timestamp < last_file_timestamp:
-            last_file_timestamp = timestamp
-
-    return last_file_timestamp

@@ -2,13 +2,16 @@ import json
 import os
 from datetime import datetime, timedelta
 
-from manage_exchange_rates import get_first_market_price_date, get_local_exchange_rate
+from exchange_rates.util import get_local_exchange_rate, get_first_market_price_date
 from manage_transactions import get_first_transaction_timestamp, get_transaction_data
 
 BASE_DIRECTORY = 'data/realized_data/'
 
 
-def update_realized_market_capitalization(symbol: str, init_price):
+def update_realized_market_capitalization(token):
+
+    symbol = token['symbol']
+    init_price = token.get('init_price')
 
     symbol_dir = BASE_DIRECTORY + symbol
 

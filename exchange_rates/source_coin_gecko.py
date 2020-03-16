@@ -47,32 +47,3 @@ def _get_last_timestamp(path):
             return datetime(year=2018, month=1, day=1)
 
 
-def get_local_exchange_rate(symbol, timestamp):
-    time_string = timestamp.strftime('%Y-%m-%d')
-    path = os.path.join('data/exchange_rates', symbol + '.csv')
-
-    with open(path) as file:
-
-        for line in file:
-
-            line_split = line.split(',')
-
-            if line_split[0] == time_string:
-                if line_split[1].strip() == 'None':
-                    return 0
-                else:
-                    return float(line_split[1].strip())
-
-    return 0
-
-
-def get_first_market_price_date(symbol):
-
-    with open('data/exchange_rates/' + symbol + '.csv') as file:
-
-        for line in file:
-
-            line_parts = line.split(',')
-
-            if line_parts[1].strip() != 'None':
-                return datetime.strptime(line_parts[0], '%Y-%m-%d')

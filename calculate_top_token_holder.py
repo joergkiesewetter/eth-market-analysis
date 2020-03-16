@@ -15,17 +15,20 @@ def calculate_top_token_holder(token: dict, from_date: datetime):
     date_to_process = get_first_data_timestamp(token['symbol'])
     date_to_process = max(date_to_process, from_date)
 
-    token_holder = _get_top_holder(token, get_last_data_timestamp(token['symbol']), 100)
+    token_holder_date = datetime.now()
+    # token_holder_date = token_holder_date.replace(year=2020, month=3, day=1, hour=0, minute=0, second=0, microsecond=0)
+    token_holder = _get_top_holder(token, token_holder_date, 100)
 
     print('--------')
     print(token['symbol'])
 
-    print('date,' + ','.join(token_holder))
+    print('accounts,' + ','.join(token_holder))
+    print('category')
     while not stop_processing:
 
         data = _get_data_to_process(token['symbol'], date_to_process)
 
-        result = _analyse_data(token['symbol'], data, date_to_process, token_holder)
+        result = _analyse_data(data, token_holder)
 
         final_string = ''
         for datum in result:
@@ -58,23 +61,45 @@ def _get_data_to_process(symbol, date):
 
 def _get_top_holder(token, date, amount):
 
-    data = _get_data_to_process(token['symbol'], date)
+    max_time = datetime.now()
+    max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    token_balances = {}
+    date_to_process = get_first_data_timestamp(token['symbol'])
 
-    for line in data:
-        if line[0] not in token['known_contracts']:
-            token_balances[line[0]] = float(line[1])
+    top_holder = list()
+    stop_processing = False
 
-    top_holder = nlargest(amount, token_balances, key=token_balances.get)
+    while not stop_processing:
 
-    # for account in top_holder:
-    #     print(account, ":", token_balances.get(account))
+        data = _get_data_to_process(token['symbol'], date_to_process)
 
-    return top_holder
+        token_balances = {}
+
+        for line in data:
+            value = float(line[1])
+            if line[0] not in token['known_contracts'] and value > 1e20:
+                token_balances[line[0]] = value
+
+        daily_top_holder = nlargest(50, token_balances, key=token_balances.get)
+        top_holder.extend(daily_top_holder)
+
+        # for account in top_holder:
+        #     print(account, ":", token_balances.get(account))
+
+        date_to_process += timedelta(days=1)
+
+        if date_to_process >= max_time:
+            stop_processing = True
+
+    return _remove_duplicates(top_holder)
 
 
-def _analyse_data(symbol, data, date, token_holder):
+def _remove_duplicates(seq):
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]
+
+def _analyse_data(data, token_holder):
 
     return_data = []
 

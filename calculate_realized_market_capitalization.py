@@ -2,7 +2,8 @@ import json
 import os
 from datetime import date, datetime, timedelta
 
-from manage_exchange_rates import get_first_market_price_date
+import manage_realized_market_capitalization
+from exchange_rates.util import get_first_market_price_date
 from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
 
 
@@ -29,7 +30,10 @@ def calculate_realized_market_capitalization(symbol: str, from_date: datetime):
               str(result['num_coins']) + ',' +
               str(result['not_moved_coins']) + ',' +
               str(result['realized_market_cap']) + ',' +
-              str(result['coins_older_1y']))
+              str(result['coins_older_1y']) + ',' +
+              str(result['num_transactions']) + ',' +
+              str(result['transaction_volume']) + ',' +
+              str(result['num_holder']))
 
         date_to_process += timedelta(days=1)
 
@@ -61,6 +65,9 @@ def _analyse_data(symbol, data, date_to_process) :
         'not_moved_coins': 0,
         'realized_market_cap': 0,
         'coins_older_1y': 0,
+        'num_transactions': 0,
+        'transaction_volume': 0,
+        'num_holder': 0,
     }
 
     market_entry_date = get_first_market_price_date(symbol)
@@ -87,9 +94,25 @@ def _analyse_data(symbol, data, date_to_process) :
             if int(coin_data[0]) < date_1y.timestamp():
                 return_data['coins_older_1y'] += coin_data[1]
 
+
+            # calculate num holder
+            if coin_data[1] > 0:
+                return_data['num_holder'] += 1
+
+    transactions = manage_realized_market_capitalization.get_transaction_data(symbol, date_to_process)
+
+    for transaction in transactions:
+        # calculate num trades
+        return_data['num_transactions'] += 1
+
+        # calculate trade volume
+        return_data['transaction_volume'] += int(transaction[7])
+
+
     return_data['num_coins'] /= pow(10, 18)
     return_data['not_moved_coins'] /= pow(10, 18)
     return_data['coins_older_1y'] /= pow(10, 18)
+    return_data['transaction_volume'] /= pow(10, 18)
 
     return return_data
 

@@ -7,11 +7,11 @@ from manage_balances import BASE_DIRECTORY
 from manage_realized_market_capitalization import get_first_data_timestamp
 from util import logging
 
-STORE_DIRECTORY = '/data/final/top_token_holder/'
+STORE_DIRECTORY = '/data/final/top_token_holder_normalized/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
-def calculate_top_token_holder(token: dict):
+def calculate_top_token_holder_normalized(token: dict):
 
     symbol = token['symbol']
     symbol_dir = STORE_DIRECTORY + symbol + '/'
@@ -27,12 +27,12 @@ def calculate_top_token_holder(token: dict):
 
     stop_processing_date = False
 
-    log.debug('calculate_top_token_holder for ' + symbol)
+    log.debug('calculate_top_token_holder_normalized for ' + symbol)
 
     while not stop_processing_date:
 
-        log.debug('calculate_top_token_holder ' + top_holder_date.strftime('%Y-%m-%d'))
-
+        log.debug('calculate_top_token_holder_normalized ' + top_holder_date.strftime('%Y-%m-%d'))
+        
         stop_processing = False
 
         date_to_process = get_first_data_timestamp(symbol)
@@ -125,7 +125,7 @@ def _get_top_holder(token, date, amount):
         token_balances = {}
 
         for line in data:
-            value = float(line[1])
+            value = float(line[2])
             if value > 1e20:
                 token_balances[line[0]] = value
 
@@ -161,7 +161,7 @@ def _analyse_data(data, token_holder):
             if holder == datum[0]:
                 return_data.append({
                     'holder': holder,
-                    'balance': (int(datum[1]) / pow(10, 18)),
+                    'balance': (int(datum[2]) / pow(10, 18)),
                 })
 
                 found = True

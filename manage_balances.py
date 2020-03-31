@@ -7,16 +7,13 @@ from exchange_rates.util import get_local_exchange_rate, get_first_market_price_
 from manage_transactions import get_first_transaction_timestamp, get_transaction_data
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/realized_data/'
+BASE_DIRECTORY = '/data/raw/balance_data/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
-
-def update_realized_market_capitalization(token):
+def update_balances(token):
 
     symbol = token['symbol']
-    init_price = token.get('init_price')
-
     symbol_dir = BASE_DIRECTORY + symbol
 
     os.makedirs(symbol_dir, exist_ok=True)
@@ -33,13 +30,13 @@ def update_realized_market_capitalization(token):
 
     state = _load_state(symbol_dir, date_to_process)
 
-    log.debug('updating realized market cap for ' + symbol)
+    log.debug('manage balances for ' + symbol)
 
     while not stop_processing:
 
         transactions = get_transaction_data(symbol, date_to_process)
 
-        log.debug('processing: ' + str(date_to_process))
+        log.debug('managing balances for ' + str(date_to_process))
 
         for transaction in transactions:
             block_number = transaction[0]
@@ -59,15 +56,6 @@ def update_realized_market_capitalization(token):
             input = transaction[14]
             confirmations = transaction[15]
 
-            if int(timestamp) < get_first_market_price_date(symbol).timestamp():
-
-                if init_price:
-                    price = init_price
-                else:
-                    price = 0
-            else:
-                price = get_local_exchange_rate(symbol, datetime.fromtimestamp(int(timestamp)))
-
             if from_address in state.keys():
                 from_account = state[from_address]
             else:
@@ -78,56 +66,24 @@ def update_realized_market_capitalization(token):
             else:
                 to_account = {
                     'balance': 0,
-                    'data': [],
+                    'balance_normalized': 0,
                 }
                 state[to_address] = to_account
 
-            #
-            # add transaction to the from-account
-            #
-
+            # change balances
             if from_account:
+                from_account['balance'] -= value
+                from_account['balance'] = max(from_account['balance'], 0)
 
-                remaining_value = value
+            to_account['balance'] += value
 
-                while remaining_value > 0:
-                    try:
-                        from_amount = from_account['data'][0][1]
-                    except Exception:
-                        log.debug(transaction)
-                        break
+            # change normalized balances
+            if from_address not in token['lending_contracts'] and to_address not in token['lending_contracts']:
+                if from_account:
+                    from_account['balance_normalized'] -= value
+                    from_account['balance_normalized'] = max(from_account['balance_normalized'], 0)
 
-
-                    if remaining_value < from_amount:
-                        from_account['data'][0][1] -= remaining_value
-                        remaining_value = 0
-                        from_account['data'][0][2] = price
-
-                    else:
-                        remaining_value -= from_amount
-                        from_account['data'] = from_account['data'][1:]
-
-                from_balance = 0
-
-                for entry in from_account['data']:
-                    from_balance += int(entry[1])
-
-                from_account['balance'] = from_balance
-
-            #
-            # add transaction to the to-account
-            #
-
-            to_account['data'].append([timestamp, value, price])
-
-            to_balance = 0
-
-            for entry in to_account['data']:
-                to_balance += int(entry[1])
-
-            to_account['balance'] = to_balance
-
-
+                to_account['balance_normalized'] += value
 
         # all transactions are processed, saving state to a file
         _save_state(symbol_dir, date_to_process, state)
@@ -178,8 +134,8 @@ def _load_state(symbol_dir, date_to_process):
             line_parts = line.split(';')
 
             return_data[line_parts[0]] = {
-                'balance': line_parts[1],
-                'data': json.loads(line_parts[2])
+                'balance': int(line_parts[1]),
+                'balance_normalized': int(line_parts[2]),
             }
 
         return return_data
@@ -194,8 +150,8 @@ def _save_state(symbol_dir, date_to_process, state):
 
     with open(path, 'at') as file:
         for key, value in state.items():
-            if len(value['data']) > 0:
-                file.write(key + ';' + str(value['balance']) + ';' + json.dumps(value['data']) + '\n')
+            if value['balance_normalized'] > 0:
+                file.write(key + ';' + str(value['balance']) + ';' + str(value['balance_normalized']) + '\n')
 
 
 def get_first_data_timestamp(symbol):

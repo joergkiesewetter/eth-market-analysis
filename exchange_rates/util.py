@@ -4,7 +4,7 @@ from datetime import datetime
 
 def get_local_exchange_rate(symbol, requested_time):
 
-    path = os.path.join('data/exchange_rates', symbol + '.csv')
+    path = os.path.join('/data/raw/exchange_rates', symbol + '.csv')
 
     with open(path) as file:
 
@@ -25,7 +25,7 @@ def get_local_exchange_rate(symbol, requested_time):
 
 def get_first_market_price_date(symbol):
 
-    with open('data/exchange_rates/' + symbol + '.csv') as file:
+    with open('/data/raw/exchange_rates/' + symbol + '.csv') as file:
 
         for line in file:
 

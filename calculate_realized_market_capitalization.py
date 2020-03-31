@@ -2,12 +2,21 @@ import json
 import os
 from datetime import date, datetime, timedelta
 
+import config
 import manage_realized_market_capitalization
 from exchange_rates.util import get_first_market_price_date
 from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
+from util import logging
 
+STORE_DIRECTORY = '/data/final/realized_market_cap/'
 
-def calculate_realized_market_capitalization(symbol: str, from_date: datetime):
+log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
+
+def calculate_realized_market_capitalization(symbol: str):
+
+    symbol_file = STORE_DIRECTORY + symbol
+
+    os.makedirs(STORE_DIRECTORY, exist_ok=True)
 
     max_time = datetime.now()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -15,30 +24,59 @@ def calculate_realized_market_capitalization(symbol: str, from_date: datetime):
     stop_processing = False
 
     date_to_process = get_first_data_timestamp(symbol)
-    date_to_process = max(date_to_process, from_date)
+    # date_to_process = max(date_to_process, from_date)
 
-    print('--------')
-    print(symbol)
+    date_last_processed = _get_last_processed_date(symbol)
+    date_to_process = max(date_to_process, date_last_processed + timedelta(days=1))
 
-    while not stop_processing:
+    log.debug('calculate_realized_market_cap for ' + symbol)
 
-        data = _get_data_to_process(symbol, date_to_process)
+    if date_to_process >= max_time:
+        return
 
-        result = _analyse_data(symbol, data, date_to_process)
+    with open(symbol_file, 'a') as file:
+        while not stop_processing:
 
-        print(date_to_process.strftime('%Y-%m-%d') + ',' +
-              str(result['num_coins']) + ',' +
-              str(result['not_moved_coins']) + ',' +
-              str(result['realized_market_cap']) + ',' +
-              str(result['coins_older_1y']) + ',' +
-              str(result['num_transactions']) + ',' +
-              str(result['transaction_volume']) + ',' +
-              str(result['num_holder']))
+            data = _get_data_to_process(symbol, date_to_process)
 
-        date_to_process += timedelta(days=1)
+            result = _analyse_data(symbol, data, date_to_process)
 
-        if date_to_process >= max_time:
-            stop_processing = True
+            date_string = date_to_process.strftime('%Y-%m-%d')
+            result_string =  date_string + ',' + \
+                            str(result['num_coins']) + ',' + \
+                            str(result['not_moved_coins']) + ',' + \
+                            str(result['realized_market_cap']) + ',' + \
+                            str(result['coins_older_1y']) + ',' + \
+                            str(result['num_transactions']) + ',' + \
+                            str(result['transaction_volume']) + ',' + \
+                            str(result['num_holder'])
+            file.write(result_string + '\n')
+            file.flush()
+
+            log.debug('calculate_realized_market_cap for ' + date_string)
+
+            date_to_process += timedelta(days=1)
+
+            if date_to_process >= max_time:
+                stop_processing = True
+
+
+def _get_last_processed_date(symbol):
+    symbol_file = STORE_DIRECTORY + symbol
+
+    last_file_timestamp = '1970-01-01'
+
+    if not os.path.exists(symbol_file):
+        return datetime.fromtimestamp(0)
+
+    with open(symbol_file, 'r') as file:
+
+        for line in file:
+            line_parts = line.split(',')
+
+            last_file_timestamp = line_parts[0]
+
+    return datetime.strptime(last_file_timestamp, '%Y-%m-%d')
 
 
 ##

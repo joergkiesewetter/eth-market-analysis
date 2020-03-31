@@ -2,10 +2,14 @@ import os
 import time
 from datetime import datetime, timedelta
 
+import config
 from manage_transactions import get_first_transaction_timestamp
 from provider.coingecko import CoinGecko
+from util import logging
 
-BASE_DIRECTORY = 'data/exchange_rates/'
+BASE_DIRECTORY = '/data/raw/exchange_rates/'
+
+log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
 def update_exchange_rates(symbol: str):
 
@@ -22,6 +26,8 @@ def update_exchange_rates(symbol: str):
         act_date = get_first_transaction_timestamp(symbol)
     else:
         act_date = _get_last_timestamp(path) + timedelta(days=1)
+
+    log.debug('updating token exchange rates')
 
     with open(path, 'a') as file:
         while act_date < max_time:

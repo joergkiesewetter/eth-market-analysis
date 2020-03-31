@@ -1,9 +1,13 @@
 import os
 from datetime import datetime
 
+import config
 from provider.etherscan import Etherscan
+from util import logging
 
-BASE_DIRECTORY = 'data/transactions/'
+BASE_DIRECTORY = '/data/raw/transactions/'
+
+log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
 
 def update_token_transactions(etherscan_api_token: str, symbol: str, token_address: str):
@@ -24,10 +28,10 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
 
     last_timestamp, last_block, last_hash = _get_last_transaction(symbol_dir)
 
-    print('starting update from block: ' + str(last_block))
+    log.debug('starting update from block: ' + str(last_block))
     if last_hash:
-        print('with hash: ' + last_hash)
-    print('with timestamp: ' + str(last_timestamp))
+        log.debug('with hash: ' + last_hash)
+    log.debug('with timestamp: ' + str(last_timestamp))
 
     transactions = Etherscan.get_token_trades(etherscan_api_token, token_address, last_block)
 
@@ -104,8 +108,8 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
             last_block = block_number
             last_hash = hash
 
-        print('last block: ' + str(last_block))
-        print('last timestamp: ' + str(last_timestamp))
+        log.debug('last block: ' + str(last_block))
+        log.debug('last timestamp: ' + str(last_timestamp))
         transactions = Etherscan.get_token_trades(etherscan_api_token, token_address, last_block)
 
         if file:
@@ -136,8 +140,8 @@ def _clear_incomplete_data(symbol_dir, transactions):
 
 
     first_transaction = transactions[0]
-    print('removing incompleted block data')
-    print('scanning for block number: ' + first_transaction['blockNumber'])
+    log.debug('removing incompleted block data')
+    log.debug('scanning for block number: ' + first_transaction['blockNumber'])
     removed_lines = 0
 
     new_lines = []
@@ -155,7 +159,7 @@ def _clear_incomplete_data(symbol_dir, transactions):
         file.flush()
         file.close()
 
-    print('removing number of lines: ' + str(removed_lines))
+    log.debug('removing number of lines: ' + str(removed_lines))
 
     with open(os.path.join(symbol_dir, last_file), 'w') as file:
         for line in new_lines:
@@ -163,7 +167,7 @@ def _clear_incomplete_data(symbol_dir, transactions):
         file.flush()
         file.close()
 
-    print('--------')
+    log.debug('--------')
 
 
 def _get_last_transaction(symbol_dir):

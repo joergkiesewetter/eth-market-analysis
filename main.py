@@ -10,6 +10,9 @@ from exchange_rates import source_coin_gecko, source_nexustracker
 from manage_balances import update_balances
 from manage_transactions import update_token_transactions
 from manage_realized_market_capitalization import update_realized_market_capitalization
+from util import logging
+
+log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
 if __name__ == "__main__":
 
@@ -24,7 +27,7 @@ if __name__ == "__main__":
 
     for token in config.TOKEN:
 
-
+        log.info('start analysis for token ' + token['symbol'])
         update_token_transactions(args.etherscan_api_token, token['symbol'], token['address'])
 
         if token['source_exchange_rates'] == 'coin_gecko':
@@ -42,6 +45,8 @@ if __name__ == "__main__":
 
         calculate_realized_market_capitalization(token['symbol'])
         calculate_token_holder_stats(token)
+
+        log.debug('--------')
 
     # postphone calculation of top token holders to have the other data faster
     for token in config.TOKEN:

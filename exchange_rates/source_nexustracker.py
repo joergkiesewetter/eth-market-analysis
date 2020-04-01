@@ -15,7 +15,7 @@ def update_exchange_rates(symbol: str):
 
     path = os.path.join(BASE_DIRECTORY, symbol + '.csv')
 
-    log.debug('updating token exchange rates')
+    log.debug('updating token exchange rates for ' + symbol)
 
     with open(path, 'w') as file:
 

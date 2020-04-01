@@ -17,7 +17,7 @@ def update_exchange_rates(symbol: str):
 
     coin_gecko_id = CoinGecko.get_id_by_symbol(symbol)
 
-    max_time = datetime.now()
+    max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     path = os.path.join(BASE_DIRECTORY, symbol + '.csv')

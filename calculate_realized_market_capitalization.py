@@ -18,7 +18,7 @@ def calculate_realized_market_capitalization(symbol: str):
 
     os.makedirs(STORE_DIRECTORY, exist_ok=True)
 
-    max_time = datetime.now()
+    max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     stop_processing = False
@@ -67,7 +67,7 @@ def _get_last_processed_date(symbol):
     last_file_timestamp = '1970-01-01'
 
     if not os.path.exists(symbol_file):
-        return datetime.fromtimestamp(0)
+        return datetime.utcfromtimestamp(0)
 
     with open(symbol_file, 'r') as file:
 

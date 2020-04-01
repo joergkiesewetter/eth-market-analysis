@@ -23,7 +23,7 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
 
     os.makedirs(symbol_dir, exist_ok=True)
 
-    max_time = datetime.now()
+    max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     last_timestamp, last_block, last_hash = _get_last_transaction(symbol_dir)
@@ -46,8 +46,12 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
 
         for transaction in transactions:
 
+            last_batch_block = last_block
+            last_batch_timestamp = last_timestamp
+            last_batch_hash = last_hash
+
             block_number = transaction['blockNumber']
-            timestamp = datetime.fromtimestamp(int(transaction['timeStamp']))
+            timestamp = datetime.utcfromtimestamp(int(transaction['timeStamp']))
             hash = transaction['hash']
 
             if timestamp > max_time:
@@ -104,13 +108,20 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
 
             file.write(new_line + '\n')
 
-            last_timestamp = timestamp
-            last_block = block_number
-            last_hash = hash
+            last_batch_timestamp = timestamp
+            last_batch_block = block_number
+            last_batch_hash = hash
 
-        log.debug('last block: ' + str(last_block))
-        log.debug('last timestamp: ' + str(last_timestamp))
-        transactions = Etherscan.get_token_trades(etherscan_api_token, token_address, last_block)
+        log.debug('last block: ' + str(last_batch_block))
+        log.debug('last timestamp: ' + str(last_batch_timestamp))
+        transactions = Etherscan.get_token_trades(etherscan_api_token, token_address, last_batch_block)
+
+        if last_timestamp == last_batch_timestamp and last_block == last_batch_block and last_hash == last_batch_hash:
+            break
+
+        last_timestamp = last_batch_timestamp
+        last_block = last_batch_block
+        last_hash = last_batch_hash
 
         if file:
             file.flush()
@@ -167,8 +178,6 @@ def _clear_incomplete_data(symbol_dir, transactions):
         file.flush()
         file.close()
 
-    log.debug('--------')
-
 
 def _get_last_transaction(symbol_dir):
 
@@ -198,7 +207,7 @@ def _get_last_transaction(symbol_dir):
 
         last_line = last_line.split(',')
 
-        return datetime.fromtimestamp(int(last_line[1])), last_line[0], last_line[2]
+        return datetime.utcfromtimestamp(int(last_line[1])), last_line[0], last_line[2]
 
 
 def get_first_transaction_timestamp(symbol):

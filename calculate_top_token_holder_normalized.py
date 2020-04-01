@@ -18,7 +18,7 @@ def calculate_top_token_holder_normalized(token: dict):
 
     os.makedirs(symbol_dir, exist_ok=True)
 
-    max_time = datetime.now()
+    max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     top_holder_date = get_first_data_timestamp(symbol)
@@ -89,7 +89,7 @@ def _get_last_processed_date(symbol_dir):
 
     # if we don't have stored data for the given symbol
     if not last_file:
-        return datetime.now() - timedelta(days=2)
+        return datetime.utcnow() - timedelta(days=2)
 
     return last_file_timestamp
 

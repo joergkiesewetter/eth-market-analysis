@@ -21,7 +21,7 @@ def update_realized_market_capitalization(token):
 
     os.makedirs(symbol_dir, exist_ok=True)
 
-    max_time = datetime.now()
+    max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     stop_processing = False
@@ -66,7 +66,7 @@ def update_realized_market_capitalization(token):
                 else:
                     price = 0
             else:
-                price = get_local_exchange_rate(symbol, datetime.fromtimestamp(int(timestamp)))
+                price = get_local_exchange_rate(symbol, datetime.utcfromtimestamp(int(timestamp)))
 
             if from_address in state.keys():
                 from_account = state[from_address]

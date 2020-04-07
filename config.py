@@ -19,7 +19,7 @@ TOKEN = [
         'team_accounts': [
 
         ],
-    },
+},
     {
         'symbol': 'SNX',
         'address': '0xc011a72400e58ecd99ee497cf89e3775d4bd732f',

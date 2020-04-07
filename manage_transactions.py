@@ -46,6 +46,12 @@ def update_token_transactions(etherscan_api_token: str, symbol: str, token_addre
 
         for transaction in transactions:
 
+            # there are transaction with a very high value which seems to be not correct
+            # i.e. https://etherscan.io/tx/0xde99cab6cdd2011479e84cc46f3b0fea3594ed345922a825785c4a4ccfd9808f
+            # we will just ignore these transactions for now
+            if int(transaction['value']) > 1e30:
+                continue
+
             last_batch_block = last_block
             last_batch_timestamp = last_timestamp
             last_batch_hash = last_hash

@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 import requests
 
@@ -43,5 +44,26 @@ class CoinGecko:
 
         if 'market_data' in json:
             return json['market_data']['current_price']['usd']
+
+        return None
+
+    @staticmethod
+    def get_market_cap_by_date(coingecko_id, date, currency):
+
+        date_string = date.strftime('%d-%m-%Y')
+
+        url = COIN_GECKO_BASE_URL + 'coins/' + coingecko_id + '/history?date=' + date_string
+
+        response = requests.get(url)
+
+        while response.status_code != 200:
+            log.warning(response.status_code)
+            response = requests.get(url)
+            time.sleep(1)
+
+        json = response.json()
+
+        if 'market_data' in json:
+            return json['market_data']['market_cap'][currency]
 
         return None

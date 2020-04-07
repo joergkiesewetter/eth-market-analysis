@@ -22,7 +22,9 @@ def calculate_top_token_holder(token: dict):
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)
 
     top_holder_date = get_first_data_timestamp(symbol)
-    date_last_processed = _get_last_processed_date(symbol_dir)
+    date_last_processed = datetime.utcnow()
+    date_last_processed = date_last_processed.replace(hour=0, minute=0, second=0, microsecond=0)
+    date_last_processed -= timedelta(days=1)
     top_holder_date = max(top_holder_date, date_last_processed)
 
     stop_processing_date = False
@@ -54,7 +56,7 @@ def calculate_top_token_holder(token: dict):
 
             date_to_process += timedelta(days=1)
 
-            if date_to_process >= top_holder_date:
+            if date_to_process >= max_time:
                 stop_processing = True
 
         with open(symbol_dir + '/' + top_holder_date.strftime('%Y-%m-%d'), 'w') as file:

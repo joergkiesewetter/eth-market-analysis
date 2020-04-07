@@ -19,7 +19,10 @@ def get_local_exchange_rate(symbol, requested_time):
             else:
                 break
 
-        return float(last_price.strip())
+        try:
+            return float(last_price.strip())
+        except:
+            return 0.0
 
 
 

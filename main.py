@@ -51,4 +51,6 @@ if __name__ == "__main__":
     # postphone calculation of top token holders to have the other data faster
     for token in config.TOKEN:
         calculate_top_token_holder(token)
-        calculate_top_token_holder_normalized(token)
+
+        if len(token['lending_contracts']) > 0:
+            calculate_top_token_holder_normalized(token)

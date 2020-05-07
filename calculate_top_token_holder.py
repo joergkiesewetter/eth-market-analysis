@@ -115,34 +115,38 @@ def _get_data_to_process(symbol, date):
 
 def _get_top_holder(token, date, amount):
 
-    date_to_process = get_first_data_timestamp(token['symbol'])
+    date_to_process = date - timedelta(days=30)
 
-    top_holder = list()
     stop_processing = False
+    token_balances = {}
 
     while not stop_processing:
 
         data = _get_data_to_process(token['symbol'], date_to_process)
 
-        token_balances = {}
-
         for line in data:
             value = float(line[1])
             if value > 1e20:
-                token_balances[line[0]] = value
 
-        daily_top_holder = nlargest(50, token_balances, key=token_balances.get)
-        top_holder.extend(daily_top_holder)
+                if line[0] not in token_balances.keys():
+                    token_balances[line[0]] = list()
 
-        # for account in top_holder:
-        #     log.debug(account, ":", token_balances.get(account))
+                token_balances[line[0]].append(value)
 
         date_to_process += timedelta(days=1)
 
         if date_to_process >= date:
             stop_processing = True
 
-    return _remove_duplicates(top_holder)
+    for holder in token_balances.keys():
+
+        if len(token_balances[holder]) <= 0:
+            token_balances[holder] = 0
+            continue
+
+        token_balances[holder] = sum(token_balances[holder]) / len(token_balances[holder])
+
+    return nlargest(amount, token_balances, token_balances.get)
 
 
 def _remove_duplicates(seq):

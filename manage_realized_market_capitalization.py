@@ -7,7 +7,7 @@ from exchange_rates.util import get_local_exchange_rate, get_first_market_price_
 from manage_transactions import get_first_transaction_timestamp, get_transaction_data
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/realized_data/'
+BASE_DIRECTORY = '/market-data/raw/realized_data/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
@@ -59,7 +59,13 @@ def update_realized_market_capitalization(token):
             input = transaction[14]
             confirmations = transaction[15]
 
-            if int(timestamp) < get_first_market_price_date(symbol).timestamp():
+            first_market_price_date = get_first_market_price_date(symbol)
+
+            if not first_market_price_date:
+                log.debug("no market price available")
+                return
+
+            if int(timestamp) < first_market_price_date.timestamp():
 
                 if init_price:
                     price = init_price

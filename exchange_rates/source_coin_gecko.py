@@ -7,7 +7,7 @@ from manage_transactions import get_first_transaction_timestamp
 from provider.coingecko import CoinGecko
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/exchange_rates/'
+BASE_DIRECTORY = '/market-data/raw/exchange_rates/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
@@ -16,6 +16,9 @@ def update_exchange_rates(symbol: str):
     os.makedirs(BASE_DIRECTORY, exist_ok=True)
 
     coin_gecko_id = CoinGecko.get_id_by_symbol(symbol)
+
+    if not coin_gecko_id:
+        return
 
     max_time = datetime.utcnow()
     max_time = max_time.replace(hour=0, minute=0, second=0, microsecond=0)

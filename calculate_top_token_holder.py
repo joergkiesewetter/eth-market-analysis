@@ -3,11 +3,10 @@ from datetime import datetime, timedelta
 from heapq import nlargest
 
 import config
-from manage_balances import BASE_DIRECTORY
-from manage_realized_market_capitalization import get_first_data_timestamp
+from manage_balances import BASE_DIRECTORY, get_first_data_timestamp
 from util import logging
 
-STORE_DIRECTORY = '/data/final/top_token_holder/'
+STORE_DIRECTORY = '/market-data/final/top_token_holder/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

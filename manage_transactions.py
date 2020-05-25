@@ -5,7 +5,7 @@ import config
 from provider.etherscan import Etherscan
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/transactions/'
+BASE_DIRECTORY = '/market-data/raw/transactions/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

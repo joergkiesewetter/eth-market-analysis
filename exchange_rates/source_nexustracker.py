@@ -5,7 +5,7 @@ import config
 from provider.nexustracker import NexusTracker
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/exchange_rates/'
+BASE_DIRECTORY = '/market-data/raw/exchange_rates/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

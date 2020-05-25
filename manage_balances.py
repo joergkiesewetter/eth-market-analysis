@@ -7,7 +7,7 @@ from exchange_rates.util import get_local_exchange_rate, get_first_market_price_
 from manage_transactions import get_first_transaction_timestamp, get_transaction_data
 from util import logging
 
-BASE_DIRECTORY = '/data/raw/balance_data/'
+BASE_DIRECTORY = '/market-data/raw/balance_data/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

@@ -7,7 +7,7 @@ from manage_balances import BASE_DIRECTORY
 from manage_realized_market_capitalization import get_first_data_timestamp
 from util import logging
 
-STORE_DIRECTORY = '/data/final/top_token_holder_normalized/'
+STORE_DIRECTORY = '/market-data/final/top_token_holder_normalized/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

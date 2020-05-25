@@ -8,7 +8,7 @@ from exchange_rates.util import get_first_market_price_date
 from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
 from util import logging
 
-STORE_DIRECTORY = '/data/final/realized_market_cap/'
+STORE_DIRECTORY = '/market-data/final/realized_market_cap/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
@@ -24,7 +24,10 @@ def calculate_realized_market_capitalization(symbol: str):
     stop_processing = False
 
     date_to_process = get_first_data_timestamp(symbol)
-    # date_to_process = max(date_to_process, from_date)
+
+    if not date_to_process:
+        log.debug('no date to calculate realized market cap')
+        return
 
     date_last_processed = _get_last_processed_date(symbol)
     date_to_process = max(date_to_process, date_last_processed + timedelta(days=1))

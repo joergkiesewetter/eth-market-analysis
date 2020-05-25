@@ -5,10 +5,10 @@ from heapq import nlargest
 
 import config
 import known_addresses
-from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
+from manage_balances import BASE_DIRECTORY, get_first_data_timestamp
 from util import logging
 
-STORE_DIRECTORY = '/data/final/token_holder_stats/'
+STORE_DIRECTORY = '/market-data/final/token_holder_stats/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 

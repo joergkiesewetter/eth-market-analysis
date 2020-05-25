@@ -31,7 +31,7 @@ exchange_addresses = [
     '0x001866ae5b3de6caa5a51543fd9fb64f524f5478', # Binance 9
     '0xab83d182f3485cf1d6ccdd34c7cfef95b4c08da4', # Binance JEX
     '0x4b729cf402cfcffd057e254924b32241aedc1795', # Bit-Z
-    ' 0x7c49e1c0e33f3efb57d64b7690fa287c8d15b90a', # Bit2C
+    '0x7c49e1c0e33f3efb57d64b7690fa287c8d15b90a', # Bit2C
     '0x5d375281582791a38e0348915fa9cbc6139e9c2a', # BitBlinx
     '0x28ebe764b8f9a853509840645216d3c2c0fd774b', # BiteBTC
     '0x1151314c646ce4e0efd76d1af4760ae66a9fe30f', # Bitfinex 1

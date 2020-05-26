@@ -150,7 +150,7 @@ def _save_state(symbol_dir, date_to_process, state):
 
     with open(path, 'at') as file:
         for key, value in state.items():
-            if value['balance_normalized'] > 0:
+            if value['balance_normalized'] > 0 or value['balance'] > 0:
                 file.write(key + ';' + str(value['balance']) + ';' + str(value['balance_normalized']) + '\n')
 
 

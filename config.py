@@ -303,14 +303,14 @@ TOKEN = [
         'source_exchange_rates': 'coin_gecko',
         'token_contracts': [
             '0x4a57e687b9126435a9b19e4a802113e266adebde',   # FXC
-            '0x30a68f8efc0c82db84d0bb0597a3cddcc329433d',   # Flexacoin: Treasury 1
-            '0x5b8515ee513cecf713ff6986da5c1f824c393032',   # Flexacoin: Treasury 2
             '0xd7abF0AdA97780b43d88cC37Bd9cEFdE73773510',   # probably a treasury
         ],
         'lending_contracts': [
             '0x12f208476f64de6e6f933e55069ba9596d818e08',   # Flexa Capacity Staking
         ],
         'team_accounts': [
+            '0x30a68f8efc0c82db84d0bb0597a3cddcc329433d',   # Flexacoin: Treasury 1
+            '0x5b8515ee513cecf713ff6986da5c1f824c393032',   # Flexacoin: Treasury 2
         ],
     },
 ]

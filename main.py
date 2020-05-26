@@ -43,7 +43,7 @@ if __name__ == "__main__":
         # calculation of results
         #
 
-        calculate_realized_market_capitalization(token['symbol'])
+        calculate_realized_market_capitalization(token)
         calculate_token_holder_stats(token)
 
         log.debug('--------')

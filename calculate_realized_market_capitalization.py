@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 
 import config
 import manage_realized_market_capitalization
+from exchange_rates import util
 from exchange_rates.util import get_first_market_price_date
 from manage_realized_market_capitalization import BASE_DIRECTORY, get_first_data_timestamp
 from util import logging
@@ -12,7 +13,9 @@ STORE_DIRECTORY = '/market-data/final/realized_market_cap/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
-def calculate_realized_market_capitalization(symbol: str):
+def calculate_realized_market_capitalization(token):
+
+    symbol = token['symbol']
 
     symbol_file = STORE_DIRECTORY + symbol
 
@@ -42,7 +45,7 @@ def calculate_realized_market_capitalization(symbol: str):
 
             data = _get_data_to_process(symbol, date_to_process)
 
-            result = _analyse_data(symbol, data, date_to_process)
+            result = _analyse_data(token, data, date_to_process)
 
             date_string = date_to_process.strftime('%Y-%m-%d')
             result_string =  date_string + ',' + \
@@ -99,7 +102,9 @@ def _get_data_to_process(symbol, date):
         return []
 
 
-def _analyse_data(symbol, data, date_to_process) :
+def _analyse_data(token, data, date_to_process) :
+
+    symbol = token['symbol']
 
     return_data = {
         'num_coins': 0,
@@ -114,6 +119,10 @@ def _analyse_data(symbol, data, date_to_process) :
     market_entry_date = get_first_market_price_date(symbol)
 
     date_1y = _add_years(date_to_process, -1)
+
+    exchange_rate = util.get_local_exchange_rate(symbol, date_to_process)
+    if not exchange_rate:
+        exchange_rate = token['init_price']
 
     for line in data:
 
@@ -136,9 +145,10 @@ def _analyse_data(symbol, data, date_to_process) :
                 return_data['coins_older_1y'] += coin_data[1]
 
 
-            # calculate num holder
-            if coin_data[1] > 0:
-                return_data['num_holder'] += 1
+        # calculate num holder
+        if (int(line[1]) / 1e18) * exchange_rate > 0.01:
+        # if coin_data[1] > 1e20:
+            return_data['num_holder'] += 1
 
     transactions = manage_realized_market_capitalization.get_transaction_data(symbol, date_to_process)
 

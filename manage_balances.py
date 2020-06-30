@@ -85,6 +85,17 @@ def update_balances(token):
 
                 to_account['balance_normalized'] += value
 
+            else:
+
+                # when the transaction contains a lending address, the transaction should be visible from the point of view of the lending address
+                # for the user address, it should not be visible
+                if from_account and from_address in token['lending_contracts']:
+                    from_account['balance_normalized'] -= value
+                    from_account['balance_normalized'] = max(from_account['balance_normalized'], 0)
+
+                if to_address in token['lending_contracts']:
+                    to_account['balance_normalized'] += value
+
         # all transactions are processed, saving state to a file
         _save_state(symbol_dir, date_to_process, state)
 

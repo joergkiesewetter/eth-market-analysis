@@ -299,7 +299,7 @@ TOKEN = [
     {
         'symbol': 'FXC',
         'address': '0x4a57e687b9126435a9b19e4a802113e266adebde',
-        'init_price': 0.001,
+        'init_price': 0.00025,
         'source_exchange_rates': 'coin_gecko',
         'token_contracts': [
             '0x4a57e687b9126435a9b19e4a802113e266adebde',   # FXC
@@ -313,4 +313,28 @@ TOKEN = [
             '0x5b8515ee513cecf713ff6986da5c1f824c393032',   # Flexacoin: Treasury 2
         ],
     },
+#     {
+#         'symbol': 'HOT',
+#         'address': '0x9af839687f6c94542ac5ece2e317daae355493a1',
+#         'init_price': 0.08, # https://cryptorank.io/currencies/hydro-protocol/ico
+#         'source_exchange_rates': 'coin_gecko',
+#         'token_contracts': [
+#             '0x9af839687f6c94542ac5ece2e317daae355493a1',   # FXC
+#             '0x74622073a4821dbfd046e9aa2ccf691341a076e1',   # allowance proxy
+#             '0xe2a0bfe759e2a4444442da5064ec549616fff101',   # HybridExchange1.1
+#             '0xb15367df8a39ea06f8f81ed35d49e056ee05f3b7',   # MultiSigWalletWithLock
+#             '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',   # wrapped Ether
+#         ],
+#         'lending_contracts': [
+#         ],
+#         'team_accounts': [ # data from coingecko
+#             '0x1902f0a23142cf07b726c9c117b2500e42c39e79',   # Foundation Wallet
+#             '0x3295f80c45de76fe955a9220e758bd81de7aa261',   # Founder Wallet
+#             '0xf47faffc5215ace2dd3bde670de0ae25adacf076',   # Foundation and Eco-Fund
+#             '0x058073b504ff054fcde9c6d27cb342b9e19055f8',   # Bounty and legal/ Early investor and advisor
+#             '0xf12f30d3f20c108141252f99ed93090066320ef6',   # Bounty and legal/ Early investor and advisor
+#             '0x5b2b77773d04da8c7fc17a559bc0b404ef3b210e',   # Bounty and legal/ Early investor and advisor
+#             '0x6cc5f688a315f3dc28a7781717a9a798a59fda7b',   # Foundation and Eco-fund
+#         ],
+#     },
 ]

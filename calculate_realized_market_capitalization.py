@@ -49,13 +49,17 @@ def calculate_realized_market_capitalization(token):
 
             date_string = date_to_process.strftime('%Y-%m-%d')
             result_string =  date_string + ',' + \
-                            str(result['num_coins']) + ',' + \
-                            str(result['not_moved_coins']) + ',' + \
-                            str(result['realized_market_cap']) + ',' + \
-                            str(result['coins_older_1y']) + ',' + \
-                            str(result['num_transactions']) + ',' + \
-                            str(result['transaction_volume']) + ',' + \
-                            str(result['num_holder'])
+                             str(result['num_coins']) + ',' + \
+                             str(result['circulating_supply']) + ',' + \
+                             str(result['not_moved_coins']) + ',' + \
+                             str(result['market_cap']) + ',' + \
+                             str(result['realized_market_cap']) + ',' + \
+                             str(result['mvrv']) + ',' + \
+                             str(result['coins_older_1y']) + ',' + \
+                             str(result['num_transactions']) + ',' + \
+                             str(result['transaction_volume']) + ',' + \
+                             str(result['num_holder']) + ',' + \
+                             str(result['exchange_rate'])
             file.write(result_string + '\n')
             file.flush()
 
@@ -108,12 +112,16 @@ def _analyse_data(token, data, date_to_process) :
 
     return_data = {
         'num_coins': 0,
+        'circulating_supply': 0,
         'not_moved_coins': 0,
+        'market_cap': 0,
         'realized_market_cap': 0,
+        'mvrv': 0,
         'coins_older_1y': 0,
         'num_transactions': 0,
         'transaction_volume': 0,
         'num_holder': 0,
+        'exchange_rate': 0,
     }
 
     market_entry_date = get_first_market_price_date(symbol)
@@ -137,6 +145,12 @@ def _analyse_data(token, data, date_to_process) :
 
             # calculate total realized market cap
             amount_coins = coin_data[1] / pow(10, 18)
+
+            if line[0] not in token['token_contracts'] and \
+                line[0] not in token['lending_contracts'] and \
+                line[0] not in token['team_accounts']:
+
+                return_data['circulating_supply'] += amount_coins
 
             return_data['realized_market_cap'] += amount_coins * coin_data[2]
 
@@ -164,6 +178,13 @@ def _analyse_data(token, data, date_to_process) :
     return_data['not_moved_coins'] /= pow(10, 18)
     return_data['coins_older_1y'] /= pow(10, 18)
     return_data['transaction_volume'] /= pow(10, 18)
+    return_data['exchange_rate'] = exchange_rate
+    return_data['market_cap'] = return_data['exchange_rate'] * return_data['circulating_supply']
+
+    if return_data['realized_market_cap'] > 0:
+        return_data['mvrv'] = return_data['market_cap'] / return_data['realized_market_cap']
+    else:
+        return_data['mvrv'] = 0
 
     return return_data
 

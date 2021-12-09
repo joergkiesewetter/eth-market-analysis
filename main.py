@@ -35,7 +35,6 @@ if __name__ == "__main__":
         elif token['source_exchange_rates'] == 'nexustracker':
             source_nexustracker.update_exchange_rates(token['symbol'])
 
-
         update_realized_market_capitalization(token)
         update_balances(token)
 

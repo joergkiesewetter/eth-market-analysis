@@ -29,6 +29,9 @@ exchange_addresses = [
     '0xbe0eb53f46cd790cd13851d5eff43d12404d33e8', # Binance 7
     '0xf977814e90da44bfa03b6295a0616a897441acec', # Binance 8
     '0x001866ae5b3de6caa5a51543fd9fb64f524f5478', # Binance 9
+    '0x28C6c06298d514Db089934071355E5743bf21d60', # Binance 14
+    '0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549', # Binance 15
+    '0xDFd5293D8e347dFe59E90eFd55b2956a1343963d', # Binance 16
     '0xab83d182f3485cf1d6ccdd34c7cfef95b4c08da4', # Binance JEX
     '0x4b729cf402cfcffd057e254924b32241aedc1795', # Bit-Z
     '0x7c49e1c0e33f3efb57d64b7690fa287c8d15b90a', # Bit2C
@@ -82,6 +85,8 @@ exchange_addresses = [
     '0x96fc4553a00c117c5b0bed950dd625d1c16dc894', # Changelly
     '0x8958618332df62af93053cb9c535e26462c959b0', # Cobinhood 1
     '0xb726da4fbdc3e4dbda97bb20998cf899b0e727e0', # Cobinhood 2
+    '0xddfAbCdc4D8FfC6d5beaf154f18B778f892A0740', # Coinbase 3
+    '0xeB2629a2734e272Bcc07BDA959863f316F4bD4Cf', # Coinbase 6
     '0x9539e0b14021a43cde41d9d45dc34969be9c7cb0', # Coinbene
     '0x33683b94334eebc9bd3ea85ddbda4a86fb461405', # Coinbene: Cold Wallet
     '0xb6ba1931e4e74fd080587688f6db10e830f810d5', # Coindelta
@@ -125,6 +130,7 @@ exchange_addresses = [
     '0xa12431d0b9db640034b0cdfceef9cce161e62be4', # HitBTC 3
     '0x274f3c32c90517975e29dfc209a23f315c1e5fc7', # Hotbit 1
     '0x8533a0bd9310eb63e7cc8e1116c18a3d67b1976a', # Hotbit 2
+    '0x562680a4dC50ed2f14d75BF31f494cfE0b8D10a1', # Hotbit 3
     '0xab5c66752a9e8167967685f1450532fb96d5d24f', # Huobi 1
     '0xe93381fb4c4f14bda253907b18fad305d799241a', # Huobi 10
     '0xfa4b5be3f2f84f56703c42eb22142744e95a2c58', # Huobi 11
@@ -258,7 +264,7 @@ known_addresses = [
     ['0x8ee7d9235e01e6b42345120b5d270bdb763624c7', 'investor', 'Polychain'],
     ['0x05E793cE0C6027323Ac150F6d45C2344d28B6019', 'investor', 'a16z'],
 
-    ['0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae', 'special', 'EthDev: Etherium Foundations multisig account'],
+    ['0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae', 'special', 'EthDev: Ethereum Foundations multisig account'],
 
     
 ]

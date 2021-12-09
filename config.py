@@ -122,20 +122,59 @@ TOKEN = [
 #         'team_accounts': [
 #         ],
 #     },
-#     {
-#         'symbol': 'LPT',
-#         'address': '0x58b6a8a3302369daec383334672404ee733ab239',
-#         'init_price': 3.0,
-#         'source_exchange_rates': 'coin_gecko',
-#         'token_contracts': [
-#             '0x58b6a8a3302369daec383334672404ee733ab239',       # LPT
-#         ],
-#         'lending_contracts': [
-#             '0x8573f2f5a3bd960eee3d998473e50c75cdbe6828',       # LPT staking contract
-#         ],
-#         'team_accounts': [
-#         ],
-#     },
+    {
+        'symbol': 'LPT',
+        'address': '0x58b6a8a3302369daec383334672404ee733ab239',
+        'init_price': 3.0,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0x58b6a8a3302369daec383334672404ee733ab239',       # LPT
+        ],
+        'lending_contracts': [
+            '0x8573f2f5a3bd960eee3d998473e50c75cdbe6828',       # LPT staking contract
+        ],
+        'team_accounts': [
+        ],
+    },
+    {
+        'symbol': 'WNXM',
+        'address': '0x0d438F3b5175Bebc262bF23753C1E53d03432bDE',
+        'init_price': 10.0,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0x0d438F3b5175Bebc262bF23753C1E53d03432bDE',       # WNXM
+            '0x586b9b2F8010b284A0197f392156f1A7Eb5e86e9',       # Nexus Mutual: Community Fund
+            # https://api.nexusmutual.io/version-data/
+            '0xcafea81b73daB8F42C5eca7d2E821A82660B6775',       # claimProofs
+            '0x813174d3eC6f7C11f4364a637cEf0f1CD6176139',       # claims
+            '0xdc2D359F59F6a26162972c3Bd0cFBfd8C9Ef43af',       # claimsData
+            '0x15671E5710e6E8f087939F8dbB6707Bc4B5c64A9',       # claimsReward
+            '0x27e6d3Ce99Fa5ec4019Ce598aF54bcB3A2FB2E5f',       # communityStakingIncentives
+            '0x6752c6FbDDc24ac88f3749D8921E00c77Bffef8c',       # distributorFactory
+            '0x089Ab1536D032F54DFbC194Ba47529a4351af1B5',       # gateway
+            '0x4A5C681dDC32acC6ccA51ac17e9d461e6be87900',       # governance
+            '0x8CEBa69a8e96a4ce71Aa65859DBdb180B489a719',       # incidents
+            '0x406511caf30043f92625414E0B951a5d9c5aBF66',       # MCR
+            '0x055CC48f7968FD8640EF140610dd4038e1b03926',       # MemberRoles
+            '0xd7c49CEE7E9188cCa6AD8FF264C1DA2e69D4Cf3B',       # NXMToken
+            '0x01BFd82675DBCc7762C84019cA518e701C0cD07e',       # NXMaster
+            '0xcafea35cE5a2fc4CED4464DA4349f81A122fd12b',       # Pool
+            '0xcafeaDA4d15BBC7592113D5d5af631b5dcd53Dcb',       # Pool 2
+            '0x84EdfFA16bb0b9Ab1163abb0a13Ff0744c11272f',       # PooledStaking
+            '0x888eA6Ab349c854936b98586CE6a17E98BF254b2',       # ProposalCategory
+            '0xB365FA523d853fbfA5608E3e4c8457166287D958',       # Quotation
+            '0x1776651F58a17a50098d31ba3C3cD259C1903f7A',       # QuotationData
+            '0xcafea4E03B98873B842D83ed368F6F1A49F58Ee7',       # SwapOperator
+            '0x5407381b6c251cFd498ccD4A1d877739CB7960B8',       # TokenController
+            '0xE20B3aE826Cdb43676e418F7C3B84B75b5697a40',       # TokenData
+            '0xcafea2D407F1307d1413e84b2730F0870fd72dC0',       # TokenFunctions
+            '0xcafea1C9f94e077DF44D95c4A1ad5a5747a18b5C',       # TwapOracle
+        ],
+        'lending_contracts': [
+        ],
+        'team_accounts': [
+        ],
+    },
 #     {
 #         'symbol': 'REN',
 #         'address': '0x408e41876cccdc0f92210600ef50372656052a38',
@@ -296,23 +335,23 @@ TOKEN = [
 #             '0x6756927922d2a32cb799f261e4abc47652cde54b'
 #         ],
 #     },
-    {
-        'symbol': 'FXC',
-        'address': '0x4a57e687b9126435a9b19e4a802113e266adebde',
-        'init_price': 0.00025,
-        'source_exchange_rates': 'coin_gecko',
-        'token_contracts': [
-            '0x4a57e687b9126435a9b19e4a802113e266adebde',   # FXC
-            '0xd7abF0AdA97780b43d88cC37Bd9cEFdE73773510',   # probably a treasury
-        ],
-        'lending_contracts': [
-            '0x12f208476f64de6e6f933e55069ba9596d818e08',   # Flexa Capacity Staking
-        ],
-        'team_accounts': [
-            '0x30a68f8efc0c82db84d0bb0597a3cddcc329433d',   # Flexacoin: Treasury 1
-            '0x5b8515ee513cecf713ff6986da5c1f824c393032',   # Flexacoin: Treasury 2
-        ],
-    },
+#     {
+#         'symbol': 'FXC',
+#         'address': '0x4a57e687b9126435a9b19e4a802113e266adebde',
+#         'init_price': 0.00025,
+#         'source_exchange_rates': 'coin_gecko',
+#         'token_contracts': [
+#             '0x4a57e687b9126435a9b19e4a802113e266adebde',   # FXC
+#             '0xd7abF0AdA97780b43d88cC37Bd9cEFdE73773510',   # probably a treasury
+#         ],
+#         'lending_contracts': [
+#             '0x12f208476f64de6e6f933e55069ba9596d818e08',   # Flexa Capacity Staking
+#         ],
+#         'team_accounts': [
+#             '0x30a68f8efc0c82db84d0bb0597a3cddcc329433d',   # Flexacoin: Treasury 1
+#             '0x5b8515ee513cecf713ff6986da5c1f824c393032',   # Flexacoin: Treasury 2
+#         ],
+#     },
 #     {
 #         'symbol': 'HOT',
 #         'address': '0x9af839687f6c94542ac5ece2e317daae355493a1',

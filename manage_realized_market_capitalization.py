@@ -92,7 +92,7 @@ def update_realized_market_capitalization(token):
             # add transaction to the from-account
             #
 
-            if from_account:
+            if from_account and from_address != '0x0000000000000000000000000000000000000000':
 
                 remaining_value = value
 
@@ -102,7 +102,6 @@ def update_realized_market_capitalization(token):
                     except Exception:
                         log.debug(transaction)
                         break
-
 
                     if remaining_value < from_amount:
                         from_account['data'][0][1] -= remaining_value
@@ -132,8 +131,6 @@ def update_realized_market_capitalization(token):
                 to_balance += int(entry[1])
 
             to_account['balance'] = to_balance
-
-
 
         # all transactions are processed, saving state to a file
         _save_state(symbol_dir, date_to_process, state)

@@ -243,9 +243,8 @@ def get_transaction_data(symbol, date):
 
             return_data = []
 
-
             for line in file:
-                return_data.append(line.split(','))
+                return_data.append(line.strip().split(','))
 
             return return_data
     except:

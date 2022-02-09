@@ -39,7 +39,6 @@ class CoinGecko:
             response = requests.get(url)
             time.sleep(1)
 
-
         json = response.json()
 
         if 'market_data' in json:

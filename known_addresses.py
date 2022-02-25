@@ -140,6 +140,7 @@ exchange_addresses = [
     '0x521db06bf657ed1d6c98553a70319a8ddbac75a3', # CREX24
     '0x5baeac0a0417a05733884852aa068b706967e790', # Cryptopia 1
     '0x2984581ece53a4390d1f568673cf693139c97049', # Cryptopia 2
+    '0x06cb22615BA53E60D67Bf6C341a0fD5E718E1655', # Curve: FEI/3CRV
     '0xe17ee7b3c676701c66b395a35f0df4c2276a344e', # DigiFinex
     '0x2101e480e22c953b37b9d0fe6551c1354fe705e6', # DMEX
     '0xf1c525a488a848b58b95d79da48c21ce434290f7', # Eidoo
@@ -2879,6 +2880,10 @@ exchange_addresses = [
     '0xb2cc3cdd53fc9a1aeaf3a68edeba2736238ddc5d', # TopBTC
     '0x1119aaefb02bf12b84d28a5d8ea48ec3c90ef1db', # Trade.io
     '0x2f1233ec3a4930fd95874291db7da9e90dfb2f03', # Uex
+    '0xC2aDdA861F89bBB333c90c492cB837741916A225', # Uniswap V2: MKR
+    '0x94B0A3d511b6EcDb17eBF877278Ab030acb0A878', # Uniswap V2: FEI/ETH
+    '0x9928e4046d7c6513326cCeA028cD3e7a91c7590A', # Uniswap V2: FEI/TRIBE
+    '0xe8c6c9227491C0a8156A0106A0204d881BB7E531', # Uniswap V3: MKR 2
     '0x390de26d772d2e2005c6d1d24afc902bae37a4bb', # Upbit 1
     '0xba826fec90cefdf6706858e5fbafcb27a290fbe0', # Upbit 2
     '0x5e032243d507c743b061ef021e2ec7fcc6d3ab89', # Upbit 3

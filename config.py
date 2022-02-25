@@ -191,23 +191,90 @@ TOKEN = [
 #         ],
 #         'team_accounts': [],
 #     },
-#     {
-#         'symbol': 'MKR',
-#         'address': '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
-#         'init_price': 10.0,
-#         'source_exchange_rates': 'coin_gecko',
-#         'token_contracts': [
-#             '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',       # MKR
-#             '0x69076e44a9c70a67d5b79d95795aba299083c275',       # gempit: place to destroy token
-#             '0x642ae78fafbb8032da552d619ad43f1d81e4dd7c',       # Redeemer
-#         ],
-#         'lending_contracts': [
-#             '0x9ef05f7f6deb616fd37ac3c959a2ddd25a54e4f5',       # Maker governance contract
-#         ],
-#         'team_accounts': [
-#
-#         ],
-# },
+    {
+        'symbol': 'MKR',
+        'address': '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
+        'init_price': 10.0,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0x6b175474e89094c44da98b954eedeac495271d0f',       # Dai Stablecoin
+            '0x39755357759ce0d7f32dc8dc45414cca409ae24e',       # Eth2Dai: Old Contract
+            '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',       # Maker Token
+            '0x5ef30b9986345249bc32d8928b7ee64de9435e39',       # Maker: CDP Manager
+            '0x448a5065aebb8e423f0896e6c5d525c040f59af3',       # Maker: Contract
+            '0xbda109309f9fafa6dd6a9cb9f1df4085b27ee8ef',       # Maker: Contract 2
+            '0x9b0f70df76165442ca6092939132bbaea77f2d7a',       # Maker: Contract 3
+            '0x9b0ccf7c8994e19f39b2b4cf708e0a7df65fa8a3',       # Maker: Contract 4
+            '0xf2c5369cffb8ea6284452b0326e326dbfdcb867c',       # Maker: Contract 5
+            '0x315cbb88168396d12e1a255f9cb935408fe80710',       # Maker: Contract 6
+            '0x79f6d0f646706e1261acf0b93dcb864f357d4680',       # Maker: Contract 7
+            '0x8e2a84d6ade1e7fffee039a35ef5f19f13057152',       # Maker: Contract 8
+            '0x69076e44a9c70a67d5b79d95795aba299083c275',       # Maker: Contract 9
+            '0x4f26ffbe5f04ed43630fdc30a87638d53d0b0876',       # Maker: Deployer 1
+            '0xdb33dfd3d61308c33c63209845dad3e6bfb2c674',       # Maker: Deployer 2
+            '0x00daa9a2d88bed5a29a6ca93e0b7d860cd1d403f',       # Maker: Deployer 3
+            '0xddb108893104de4e1c6d0e47c42237db4e617acc',       # Maker: Deployer 4
+            '0xda0fab05039809e63c5d068c897c3e602fa97457',       # Maker: Deployer 5
+            '0xa26e15c895efc0616177b7c1e7270a4c7d51c997',       # Maker: DS Proxy Factory
+            '0x373238337bfe1146fb49989fc222523f83081ddb',       # Maker: DSR Manager
+            '0x36a724bd100c39f0ea4d3a20f7097ee01a8ff573',       # Maker: Get CDPS
+            '0x78f2c2af65126834c51822f56be0d7469d7a523e',       # Maker: MCD Cat
+            '0xbaa65281c2fa2baacb2cb550ba051525a480d3f4',       # Maker: MCD Deploy
+            '0xab14d3ce3f733cacb76ec2abe7d2fcb00c99f3d5',       # Maker: MCD End
+            '0x0581a0abe32aae9b5f0f68defab77c6759100085',       # Maker: MCD ESM
+            '0xdfe0fb1be2a52cdbf8fb962d5701d7fd0902db9f',       # Maker: MCD Flap
+            '0xaa745404d55f88c108a28c86abe7b5a1e7817c07',       # Maker: MCD Flip BAT A
+            '0xd8a04f5412223f513dc55f839574430f5ec15531',       # Maker: MCD Flip ETH A
+            '0x5432b2f3c0dff95aa191c45e5cbd539e2820ae72',       # Maker: MCD Flip SAI
+            '0xbe00fe8dfd9c079f1e5f5ad7ae9a3ad2c571fcac',       # Maker: MCD Flop
+            '0x4f5f0933158569c026d617337614d00ee6589b6e',       # Maker: MCD Gov Actions
+            '0x3d0b1912b66114d4096f48a8cee3a56c231772ca',       # Maker: MCD Join BAT A
+            '0x9759a6ac90977b93b58547b4a71c78317f391a28',       # Maker: MCD Join DAI
+            '0x2f0b23f53734252bda2277357e97e1517d6b042a',       # Maker: MCD Join ETH A
+            '0xad37fd42185ba63009177058208dd1be4b136e6b',       # Maker: MCD Join SAI
+            '0x19c0976f590d67707e62397c87829d896dc0f1f1',       # Maker: MCD Jug
+            '0xbe286431454714f511008713973d3b053a2d38f3',       # Maker: MCD Pause
+            '0xbe8e3e3618f7474f8cb1d074a26affef007e98fb',       # Maker: MCD Pause Proxy
+            '0x197e90f9fad81970ba7976f33cbd77088e5d7cf7',       # Maker: MCD Pot
+            '0x65c79fcb50ca1594b025960e539ed7a9a6d434a3',       # Maker: MCD Spot
+            '0x35d1b3f3d7966a1dfe207aa4514c12a259a0492b',       # Maker: MCD Vat
+            '0xa950524441892a31ebddf91d3ceefa04bf454466',       # Maker: MCD Vow
+            '0x99041f808d598b782d5a3e498681c2452a31da08',       # Maker: Medianizer 1
+            '0x729d19f657bd0614b4985cf1d82531c67569197b',       # Maker: Medianizer 2
+            '0xc73e0383f3aff3215e6f04b0331d58cecf0ab849',       # Maker: Migration
+            '0xe4b22d484958e582098a98229a24e8a43801b674',       # Maker: Migration Proxy Actions
+            '0x5e227ad1969ea493b43f840cff78d08a6fc17796',       # Maker: Multicall
+            '0x793ebbe21607e4f04788f89c7a9b97320773ec59',       # Maker: Oasis Proxy
+            '0xc66ea802717bfb9833400264dd12c2bceaa34a6d',       # Maker: Old Token
+            '0xb4eb54af9cc7882df0121d26c5b97e802915abe6',       # Maker: PIP BAT
+            '0x81fe72b5a8d1a857d176c3e7d5bd2679a9b85763',       # Maker: PIP ETH
+            '0x54003dbf6ae6cba6ddae571ccdc34d834b44ab1e',       # Maker: PIP SAI
+            '0x82ecd135dce65fbc6dbdd0e4237e0af93ffd5038',       # Maker: Proxy Actions
+            '0x07ee93aeea0a36fff2a9b95dd22bd6049ee54f26',       # Maker: Proxy Actions DSR
+            '0x069b2fb501b6f16d1f5fe245b16f6993808f1008',       # Maker: Proxy Actions End
+            '0x1b93556ab8dccef01cd7823c617a6d340f53fb58',       # Maker: Proxy Deployer
+            '0x6bda13d43b7edd6cafe1f70fb98b5d40f61a1370',       # Maker: Proxy Pause Actions
+            '0x4678f0a6958e4d2bc4f1baf7bc52e8f3564f3fe4',       # Maker: Proxy Registry
+            '0x0a59649758aa4d66e25f08dd01271e891fe52199',       # Maker: PSM-USDC-A
+            '0x190c2cfc69e68a8e8d5e2b9e2b9cc3332caff77b',       # Maker: Sai Proxy 1
+            '0x526af336d614ade5cc252a407062b8861af998f5',       # Maker: Sai Proxy 2
+            '0xbf72da2bd84c5170618fbe5914b0eca9638d5eb5',       # Maker: WBTC
+            '0x794e6e91555438afc3ccf1c5076a74f42133d08d',       # OasisDEX
+            '0x14fbca95be7e99c15cc2996c6c9d841e54b79425',       # OasisDex: Old Contract 1
+            '0xb7ac09c2c0217b07d7c103029b4918a2c401eecb',       # OasisDex: Old Contract 2
+            '0xf53ad2c6851052a81b42133467480961b2321c09',       # Pooled Ether
+            '0x59adcf176ed2f6788a41b8ea4c4904518e62b6a4',       # ProtoSAI Token
+            '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',       # Sai Stablecoin
+            '0x642ae78fafbb8032da552d619ad43f1d81e4dd7c',       # Redeemer
+        ],
+        'lending_contracts': [
+            '0x0a3f6849f78076aefadf113f5bed87720274ddc0',       # Maker: Governance Contract
+            '0x9ef05f7f6deb616fd37ac3c959a2ddd25a54e4f5',       # Maker governance contract
+        ],
+        'team_accounts': [
+            '0x8ee7d9235e01e6b42345120b5d270bdb763624c7',       # Maker: MultiSig
+        ],
+    },
 #     {
 #         'symbol': 'NEST',
 #         'address': '0x04abeda201850ac0124161f037efd70c74ddc74c',
@@ -260,7 +327,6 @@ TOKEN = [
             '0x87d73E916D7057945c9BcD8cdd94e42A6F47f776',       # NFTX Token
             '0x8F217D5cCCd08fD9dCe24D6d42AbA2BB4fF4785B',       # NFTX: Deployer
             '0x5fAD0e4cc9925365b9B0bbEc9e0C3536c0B1a5C7',       # Staking Token Provider
-            '0x688c3E4658B5367da06fd629E41879beaB538E37',       # Staking
             '0xe8B6820b74533c27786E4724a578Bfca28D97BD1',       # Vault template
             '0x7AE9D7Ee8489cAD7aFc84111b8b185EE594Ae090',       # Fee Distributor
             '0xBE86f647b167567525cCAAfcd6f881F1Ee558216',       # Vault Factory
@@ -269,9 +335,50 @@ TOKEN = [
             '0x0b8ee2ee7d6f3bfb73c9ae2127558d1172b65fb1',       # NFTX Staking Zap
         ],
         'lending_contracts': [
+            '0x688c3E4658B5367da06fd629E41879beaB538E37',       # Staking
         ],
         'team_accounts': [
-            '0x40D73Df4F99bae688CE3C23a01022224FE16C7b2',       # NFTX: Dao Treasury
+            '0x40d73df4f99bae688ce3c23a01022224fe16c7b2',       # NFTX: Dao Treasury
+        ],
+    },
+    {
+        'symbol': 'TRIBE',
+        'address': '0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B',
+        'init_price': 2.21,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B',       # TRIBE Token
+            '0xC416EEe663ECa29cEB726241caDFFe6a77D61E2D',       # PegExchangeDripper
+            '0x0BEF27FEB58e857046d630B2c03dFb7bae567494',       # FEI DAO
+            '0xE087F94c3081e1832dC7a22B48c6f2b5fAaE579B',       # Old FEI DAO
+            '0x956F47F50A910163D8BF957Cf5846D573E7f87CA',       # FEI Token
+            '0xB1410aeCe2c65fE9e107c58b5aa32e91B18f0BC7',       # Ratio PVC Controller
+            '0xB783c0E21763bEf9F2d04E6499abFbe23AdB7e1F',       # ETH Bonding Curve
+            '0xC0afe0E649e32528666F993ce63822c3840e941a',       # DAI Bonding Curve
+            '0x25d60212D47Dd8F6Ff0469367E4c6C98Cd3411A5',       # RAI Bonding Curve
+            '0xBf5721c5E1C370f6F1A3E21b3972E0AcE93A1E84',       # DPI Bonding Curve
+            '0x902199755219A9f8209862d09F1891cfb34F59a3',       # DPI Sushiswap PCV Deposit
+            '0x0ee81df08B20e4f9E0F534e50da437D24491c4ee',       # INDEX Snapshot Delegator PCV Deposit
+            '0x15958381E9E6dc98bD49655e36f524D2203a28bD',       # EthUniswapPCVDeposit
+            '0x17305f0e18318994a57b494078CAC866A857F7b6',       # EthReserveStabilizer
+            '0x9e1076cC0d19F9B0b8019F384B0a29E48Ee46f7f',       # Tribal Chief
+            '0x3Fe0EAD3500e767F0F8bC2d3B5AF7755B1b21A6a',       # Tribe ERC20Dripper
+            '0xDee5c1662bBfF8f80f7c572D8091BF251b3B0dAB',       # Tribe AaveIncentivesController
+            '0xd81Be1B9A7895C996704A8DDa794BbA4454EeB90',       # fTRIBE StakedTokenWrapper
+            '0x73F16f0c0Cd1A078A54894974C5C054D8dC1A3d7',       # FeiRari RewardsDistributorDelegator
+            '0x4e979E8b136Cd7BdEBB83ea50a599C3BED1e15c0',       # FeiRari RewardsDistributorAdmin
+            '0x61Be49Dfbd869a601FEa076E1A1379903e61a895',       # FeiRari Tribe AutoRewardsDistributor
+
+        ],
+        'lending_contracts': [
+        ],
+        'team_accounts': [
+            '0x8d5ED43dCa8C2F7dFB20CF7b53CC7E593635d7b9',       # DAO TRIBE Treasury
+            '0xd51dbA7a94e1adEa403553A8235C302cEbF41a3c',       # FEO DAO Timelock
+            '0x639572471f2f318464dc01066a56867130e45E25',       # Old FEI DAO Timelock
+            '0x35ED000468f397AA943009bD60cc6d2d9a7d32fF',       # TribalChief Optimistic Multisig
+            '0xbC9C084a12678ef5B516561df902fdc426d95483',       # TribalChief Optimistic Timelock
+            '0xB8f482539F2d3Ae2C9ea6076894df36D1f632775',       # Guardian Multisig
         ],
     },
 #     {

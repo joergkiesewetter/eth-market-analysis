@@ -44,13 +44,13 @@ def calculate_token_holder_stats(token: dict):
             remaining_accounts = list()
 
             for datum in data:
-                if datum[0] in token['token_contracts'] or datum[0] in token['lending_contracts']:
+                if datum[0].lower() in token['token_contracts'] or datum[0].lower() in token['lending_contracts']:
                     token_contracts_balance += int(datum[1])
 
-                elif datum[0] in token['team_accounts']:
+                elif datum[0].lower() in token['team_accounts']:
                     team_balance += int(datum[1])
 
-                elif datum[0] in known_addresses.exchange_addresses:
+                elif datum[0].lower() in known_addresses.exchange_addresses:
                     exchange_balance += int(datum[1])
 
                 else:
@@ -58,7 +58,6 @@ def calculate_token_holder_stats(token: dict):
                         'account': datum[0],
                         'balance': int(datum[1]),
                     })
-
 
             remaining_accounts.sort(key=lambda element : element['balance'], reverse=True)
 

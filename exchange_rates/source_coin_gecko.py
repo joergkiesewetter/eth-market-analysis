@@ -11,6 +11,7 @@ BASE_DIRECTORY = '/market-data/raw/exchange_rates/'
 
 log = logging.get_custom_logger(__name__, config.LOG_LEVEL)
 
+
 def update_exchange_rates(symbol: str):
 
     os.makedirs(BASE_DIRECTORY, exist_ok=True)
@@ -37,9 +38,12 @@ def update_exchange_rates(symbol: str):
 
             price = CoinGecko.get_exchange_rate(coin_gecko_id, act_date)
 
-            file.write(','.join([act_date.strftime('%Y-%m-%d'), str(price)]) + '\n')
+            line = ','.join([act_date.strftime('%Y-%m-%d'), str(price)])
+            log.debug(line)
+
+            file.write(line + '\n')
             file.flush()
-            time.sleep(1)
+            time.sleep(3)
 
             act_date += timedelta(days=1)
 

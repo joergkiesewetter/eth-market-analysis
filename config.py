@@ -97,6 +97,35 @@ TOKEN = [
 #         'team_accounts': [
 #         ],
 #     },
+    {
+        'symbol': 'INDEX',
+        'address': '0x0954906da0Bf32d5479e25f46056d22f08464cab',
+        'init_price': 3.55,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0x0954906da0Bf32d5479e25f46056d22f08464cab',       # INDEX
+            '0x26e316f5b3819264DF013Ccf47989Fb8C891b088',       # Index Coop: Community Treasury Year 1 Vesting
+            '0xd89C642e52bD9c72bCC0778bCf4dE307cc48e75A',       # Index Coop: Community Treasury Year 2 Vesting
+            '0x71F2b246F270c6AF49e2e514cA9F362B491Fbbe1',       # Index Coop: Community Treasury Year 3 Vesting
+            '0xB93b505Ed567982E2b6756177ddD23ab5745f309,'       # Index Coop: DPI staking rewards v2 
+            '0x8f06FBA4684B5E0988F215a47775Bb611Af0F986',       # Index Coop: Initial Liquidity Mining Rewards
+            '0x7B15bB785167c610020B52bf4B790396D73bf8a0',       # unknown vesting contract
+        ],
+        'lending_contracts': [
+        ],
+        'team_accounts': [
+            '0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC',       # Index Coop: MultiSig
+            '0xf64d061106054Fe63B0Aca68916266182E77e9bc',       # Index Coop: Set Labs Year 1 Vesting
+            '0x4C11DFD35A4FE079B41D5d9729eD34C00D487712',       # Index Coop: Set Labs Year 2 Vesting
+            '0x0D627ca04A97219F182DaB0Dc2a23FB4a5B02A9D',       # Index Coop: Set Labs Year 3 Vesting
+            '0x5C29Aa6761803BcFDA7f683eaa0ff9bdDDA3649D',       # Index Coop: DeFi Pulse Year 1 Vesting
+            '0xCe3c6312385fCF233aB0De574b0cB1A588566C3f',       # Index Coop: DeFi Pulse Year 2 Vesting
+            '0x0f58793e8CF39D6b60919FFaf773A7f95A568146',       # Index Coop: DeFi Pulse Year 3 Vesting
+            '0xDD111F0fc07F4D89ED6ff96DBAB19a61450b8435',       # Index Coop: Early Community Rewards
+            '0x66a7d781828B03Ee1Ae678Cd3Fe2D595ba3B6000',       # Index Coop: Index Methodologist Vesting
+
+        ],
+    },
 #     {
 #         'symbol': 'KNC',
 #         'address': '0xdd974d5c2e2928dea5f71b9825b8b646686bd200',
@@ -501,6 +530,22 @@ TOKEN = [
         'lending_contracts': [
         ],
         'team_accounts': [
+        ],
+    },
+    {
+        'symbol':                'XMON',
+        'address':               '0x3aaDA3e213aBf8529606924d8D1c55CbDc70Bf74',
+        'init_price':            2000.0,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts':       [
+            '0x3aaDA3e213aBf8529606924d8D1c55CbDc70Bf74', # XMON
+            '0xD06337A401B468657dE2f9d3E390cE5b21C3c1C0', # MonStaker2
+            '0xA3300bfc13556Fa5146fFdE34e92a0230A1C3197', # MonStaker3
+        ],
+        'lending_contracts':     [
+        ],
+        'team_accounts':         [
+            '0x4e2f98c96e2d595a83afa35888c4af58ac343e44',   # XMON Multisig
         ],
     },
 #     {

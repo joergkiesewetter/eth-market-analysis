@@ -124,6 +124,7 @@ exchange_addresses = [
     '0x3cd751e6b0078be393132286c442345e5dc49699', # Coinbase 4
     '0xb5d85cbf7cb3ee0d56b3bb207d5fc4b82f43f511', # Coinbase 5
     '0xeB2629a2734e272Bcc07BDA959863f316F4bD4Cf', # Coinbase 6
+    '0xA9D1e08C7793af67e9d92fe308d5697FB81d3E43', # Coinbase 10
     '0x9539e0b14021a43cde41d9d45dc34969be9c7cb0', # Coinbene
     '0x33683b94334eebc9bd3ea85ddbda4a86fb461405', # Coinbene: Cold Wallet
     '0xb6ba1931e4e74fd080587688f6db10e830f810d5', # Coindelta
@@ -2883,7 +2884,10 @@ exchange_addresses = [
     '0xC2aDdA861F89bBB333c90c492cB837741916A225', # Uniswap V2: MKR
     '0x94B0A3d511b6EcDb17eBF877278Ab030acb0A878', # Uniswap V2: FEI/ETH
     '0x9928e4046d7c6513326cCeA028cD3e7a91c7590A', # Uniswap V2: FEI/TRIBE
+    '0x4bacAaAbe3e96959ddf3269D3092D5cea88fEFe9', # Uniswap V2: XMON
     '0xe8c6c9227491C0a8156A0106A0204d881BB7E531', # Uniswap V3: MKR 2
+    '0x59B4BB1f5D943CF71A10Df63F6B743ee4a4489EE', # Uniswap V3: XMON
+    '0xd3CA35355106cb8Bc5Fd7C534275509673319D83', # Uniswap V3: XMON/USDC
     '0x390de26d772d2e2005c6d1d24afc902bae37a4bb', # Upbit 1
     '0xba826fec90cefdf6706858e5fbafcb27a290fbe0', # Upbit 2
     '0x5e032243d507c743b061ef021e2ec7fcc6d3ab89', # Upbit 3

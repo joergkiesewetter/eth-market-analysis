@@ -27,6 +27,21 @@ if __name__ == "__main__":
 
     for token in config.TOKEN:
 
+        token_contracts = []
+        for address in token['token_contracts']:
+            token_contracts.append(address.lower())
+        token['token_contracts'] = token_contracts
+
+        lending_contracts = []
+        for address in token['lending_contracts']:
+            lending_contracts.append(address.lower())
+        token['lending_contracts'] = lending_contracts
+
+        team_accounts = []
+        for address in token['team_accounts']:
+            team_accounts.append(address.lower())
+        token['team_accounts'] = team_accounts
+
         log.info('start analysis for token ' + token['symbol'])
         update_token_transactions(args.etherscan_api_token, token['symbol'], token['address'])
 

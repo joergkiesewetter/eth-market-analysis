@@ -37,7 +37,7 @@ class CoinGecko:
         while response.status_code != 200:
             log.warning(response.status_code)
             response = requests.get(url)
-            time.sleep(1)
+            time.sleep(10)
 
         json = response.json()
 

@@ -371,6 +371,50 @@ TOKEN = [
         ],
     },
     {
+        'symbol': 'ROBOT',
+        'address': '0xfb5453340C03db5aDe474b27E68B6a9c6b2823Eb',
+        'init_price': 6.31,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0xfb5453340C03db5aDe474b27E68B6a9c6b2823Eb',       # ROBOT Token
+        ],
+        'lending_contracts': [
+        ],
+        'team_accounts': [
+            '0x40D73Df4F99bae688CE3C23a01022224FE16C7b2',       # NFTX: Dao Treasury
+        ],
+    },
+    {
+        'symbol': 'SSV',
+        'address': '0x9D65fF81a3c488d585bBfb0Bfe3c7707c7917f54',
+        'init_price': 20.44,
+        'source_exchange_rates': 'coin_gecko',
+        'token_contracts': [
+            '0x9D65fF81a3c488d585bBfb0Bfe3c7707c7917f54',       # SSV Token
+        ],
+        'lending_contracts': [
+        ],
+        'team_accounts': [
+            '0x2bf73A478cc6a7bA4E6758A3A52AbDc8CDBa735E',       # DEX: CDT-SSV swap
+            '0xb35096b074fdb9bBac63E3AdaE0Bbde512B2E6b6',       # ssv-network: DAO treasury
+            '0xE16e6Bddf4a1683c029DdC7AEcb567A6095e95A6',       # Airdrop: Merkle Distributor
+            '0x1806c87798b59C56fc481C2998D9D506675808e3',       # User: Bitfly
+            '0x186fa67b00F0C8d777aAfB5caCD5002AAC1B8c83',       # User: Lsankar
+            '0x489a727c5722d0D0CF654d169F87De1Bb5743A87',       # User: Fod
+            '0xf71E9C766Cdf169eDFbE2749490943C1DC6b8A55',       # User: Preston
+            '0xeCbb058Fc429941124a2b8d0984354c3132F536f',       # User: Yorick
+            '0x10F5d45854e038071485AC9e402308cF80D2d2fE',       # User: Beiko
+            '0x872Da650d6d727b87e56D8e46f62228a27f94B3d',       # User: Sp00ky
+            '0x78D71193A507287365b968dBf7D3Bc6C49d7Eb0b',       # User: Taiga
+            '0x2de670a1D8c1DE83D8727295284704bB196bA117',       # User: BenAffleck
+            '0x6210477B3025BF5ea50A35D39e7D2875dC11661c',       # User: GBeast
+            '0xA8baE5d3EEabd6AB13EE401b67EaEdCe06C70248',       # User: Izzy
+            '0x5ba64C3A6Dfd64025F1647DaD8b23Cf48132624F',       # User: Elias
+            '0x32ebAf9ea4063d911222407838E15E3a5027A638',       # User: Marko
+            '0x4a24A839576695e3F10eCCAA090cedc0E7e39E73',       # User: dMarketing
+        ],
+    },
+    {
         'symbol': 'TRIBE',
         'address': '0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B',
         'init_price': 2.21,
@@ -479,20 +523,6 @@ TOKEN = [
 #         'team_accounts': [
 #         ],
 #     },
-    {
-        'symbol': 'ROBOT',
-        'address': '0xfb5453340C03db5aDe474b27E68B6a9c6b2823Eb',
-        'init_price': 6.31,
-        'source_exchange_rates': 'coin_gecko',
-        'token_contracts': [
-            '0xfb5453340C03db5aDe474b27E68B6a9c6b2823Eb',       # ROBOT Token
-        ],
-        'lending_contracts': [
-        ],
-        'team_accounts': [
-            '0x40D73Df4F99bae688CE3C23a01022224FE16C7b2',       # NFTX: Dao Treasury
-        ],
-    },
     {
         'symbol': 'WNXM',
         'address': '0x0d438F3b5175Bebc262bF23753C1E53d03432bDE',
